@@ -1,0 +1,62 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$request = $objectManager->get('Magento\Framework\App\Action\Context')->getRequest();
+//echo $request->getFullActionName();
+if($request->getFullActionName() === "catalog_category_view"){ ?>
+
+    <?php    
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
+    /*print_r($category->getData());
+    exit();*/
+
+    ?>
+
+    <div class="products wrapper grid products-grid">
+        <ul class="products list items product-items">
+            <?php
+
+            //print_r($category->getData());
+            //echo $category->getEntityId();
+
+
+            $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $object_manager = $_objectManager->create('Magento\Catalog\Model\Category')->load($category->getEntityId());
+            $testse = $object_manager->getChildrenCategories()->getData();
+
+            //exit();
+            /*$sublist = $category->getChildren();
+            $testse  = explode(",",$sublist);*/
+            /*print_r($testse);
+            exit();*/
+            foreach ($testse as $subids) {
+
+                $_objectManagers = \Magento\Framework\App\ObjectManager::getInstance();
+
+                $object_managers = $_objectManagers->create('Magento\Catalog\Model\Category')->load($subids['entity_id']); ?>
+
+                <li class="item product product-item">
+
+                    <div class = "cate_name">
+                        <a href="<?php echo $object_managers->getUrl(); // URL  ?>" alt="<?php echo $object_managers->getName(); // Name ?>">
+                            <?php echo $object_managers->getName(); // Name ?>
+                        </a>
+                    </div>
+                    <div class = "cate_img">
+                        <a href="<?php echo $object_managers->getUrl(); // URL  ?>">
+
+                            <?php if($object_managers->getImageUrl()) { ?>
+                                <div class ="img"> <img src="<?php echo $object_managers->getImageUrl(); //Img Path ?>" alt="<?php echo $object_managers->getName(); // Name ?>"></div >
+                            <?php }/* else{ ?>
+                                <div class ="img"> <img src="<?php echo ""; //Thamnel img ?>"></div >
+                                    <?php }  */?>
+
+                        </a>
+                    </div>
+                </li>
+
+            <?php     } ?>
+        </ul>
+    </div>
+
+<?php } ?>

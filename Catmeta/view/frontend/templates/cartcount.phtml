@@ -1,0 +1,12 @@
+<div class="catalog-back">
+<?php
+ 
+	
+$ccount = $block->countCart();
+if($ccount == 0){
+?>
+<a href="javascript:history.go(-1)">&lt; alle producten</a>
+<?php }else{	?>
+<a href="javascript:history.go(-2)">&lt; alle producten</a>
+<?php } ?>
+</div>

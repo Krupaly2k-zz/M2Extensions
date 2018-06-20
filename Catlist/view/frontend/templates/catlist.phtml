@@ -1,0 +1,46 @@
+<?php
+
+$categories = $block->getCategoryCollection(); 
+?>
+<div class="homecat">
+<ul>
+<?php
+$parent = array();
+$child = array();
+foreach ($categories as $category) {
+	
+	if($category->getId() != '2') 
+	{
+		if($category->getParentId() == '2'){
+			$sub = $block->getDescendants($category->getId());
+			
+?>
+<li>
+
+	<a href="<?php echo $category->getUrl();?>"><?php echo $category->getName();?></a>
+<?php if(!empty($sub)){
+	?><ul>
+	<?php
+		foreach($sub as $su)
+		{
+			?><li><a href="<?php echo $su->getUrl();?>"><?php echo $su->getName();?></a></li>
+			<?php
+		}
+	?>
+	</ul>
+	<?php
+}
+}
+?>
+</li>
+<?php
+	
+	}
+	
+}
+ 
+
+?>
+</ul>
+</div>
+

@@ -1,0 +1,11 @@
+
+<?php 
+$prid =  $block->getProduct()->getId();
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance(); 
+$_product = $objectManager->get('Magento\Catalog\Model\Product')->load($prid);
+echo $_product->getData('teelprocess');
+
+//echo $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getHistory(), 'history') ?>
+
+

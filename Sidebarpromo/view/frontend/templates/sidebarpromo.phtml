@@ -1,0 +1,73 @@
+<?php
+
+$products = $block->getProductCollection();
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$currencysymbol = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
+$currency = $currencysymbol->getStore()->getCurrentCurrencyCode();
+$currency = $objectManager->create('Magento\Directory\Model\CurrencyFactory')->create()->load($currency);
+$currencycode = $currency->getCurrencySymbol();
+
+
+if(!empty($products))
+{
+	foreach($products as $product)
+{
+
+
+$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+$connection = $resource->getConnection();
+$tableName = 'mg_catalog_product_super_link'; //gives table name with prefix
+
+//Select Data from table
+$sql = "select * FROM " . $tableName . " where product_id='".$product->getId()."'";
+$result = $connection->fetchAll($sql);
+if(isset($result))
+{
+	if(!empty($result[0]['parent_id'])){
+		$prid = $result[0]['parent_id'];
+	} else {
+		$prid = $product->getId();
+	}
+$productl = $this->getPro($prid);
+foreach($productl as $prl)
+{
+	$prlurl =  $prl->getProductUrl();
+		$imagewidth='300';
+$imageheight='150';
+$imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
+$image_url = $imageHelper->init($prl, 'product_page_image_small')->setImageFile($prl->getFile())->resize($imagewidth, $imageheight)->getUrl();
+}
+	//$productl = $objectManager->create('Magento\ConfigurableProduct\Model\Product\Type\Configurable')->load($prid);
+
+}
+else
+{
+	$productl = $product;
+	$prlurl = $product->getProductUrl();
+		$imagewidth='300';
+$imageheight='150';
+$imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
+$image_url = $imageHelper->init($product, 'product_page_image_small')->setImageFile($product->getFile())->resize($imagewidth, $imageheight)->getUrl();
+}
+
+
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$storeManager->getStore()->getBaseUrl();
+
+
+?>
+
+
+<div class="product-section3">
+<div class="img-thumb">
+<h5 class="product-title"><span></span><span>PROMO</span><span></span></h5>
+<a href="<?php echo $prlurl;?>"><img src="<?php echo $image_url;?>" alt="<?php echo $product->getName();?>"> <span class="overlay"> <span class="price"><?php echo $currencycode.' '.number_format($product->getSpecialPrice(),2); ?></span> <span> </span></span></a></div>
+</div>
+
+
+<?php
+}
+ } ?>

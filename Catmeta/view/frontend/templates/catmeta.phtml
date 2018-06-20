@@ -1,0 +1,34 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$request = $objectManager->get('Magento\Framework\App\Action\Context')->getRequest();
+//echo $request->getFullActionName();
+if($request->getFullActionName() === "catalog_category_view"){ ?>
+
+    <?php    
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
+    /*print_r($category->getData());
+    exit();*/
+	
+	$meta = $category->getMetaDescription();
+	if($meta != '')
+	{
+		?>
+		<div class="catmeta">
+		<h2>
+		<?php
+		echo $category->getName();
+		?></h2>
+		
+		
+		<?php
+		echo $meta; ?>
+		</div>
+		<?php
+	}
+	
+    ?>
+
+  
+
+<?php } ?>
