@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Solwin Infotech
+ * Solwin ProductAttachment Extension
+ * 
+ * @category   Solwin
+ * @package    Solwin_ProductAttachment
+ * @copyright  Copyright © 2006-2016 Solwin (https://www.solwininfotech.com)
+ * @license    https://www.solwininfotech.com/magento-extension-license/
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Solwin_ProductAttachment::productattachment" title="Product Attachment" module="Solwin_ProductAttachment" sortOrder="52" parent="Solwin_ProductAttachment::extension" resource="Solwin_ProductAttachment::productattachment"/>
+        <add id="Solwin_ProductAttachment::attachment" title="Manage Attachments" module="Solwin_ProductAttachment" sortOrder="10" action="solwin_productattachment/attachment" resource="Solwin_ProductAttachment::attachment" parent="Solwin_ProductAttachment::productattachment"/>
+        <add id="Solwin_ProductAttachment::productattachment_config" title="Configuration" module="Solwin_ProductAttachment" sortOrder="20" parent="Solwin_ProductAttachment::productattachment" action="adminhtml/system_config/edit/section/productattachment" resource="Solwin_ProductAttachment::productattachment_config"/>
+        <add id="Solwin_ProductAttachment::extension" title="Solwin" module="Solwin_ProductAttachment" sortOrder="65" resource="Solwin_ProductAttachment::extension" />
+    </menu>
+</config>

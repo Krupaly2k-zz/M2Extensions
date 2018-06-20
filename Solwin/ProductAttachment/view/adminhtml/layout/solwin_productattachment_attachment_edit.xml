@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Solwin Infotech
+ * Solwin ProductAttachment Extension
+ * 
+ * @category   Solwin
+ * @package    Solwin_ProductAttachment
+ * @copyright  Copyright © 2006-2016 Solwin (https://www.solwininfotech.com)
+ * @license    https://www.solwininfotech.com/magento-extension-license/
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Solwin\ProductAttachment\Block\Adminhtml\Attachment\Edit" name="solwin_productattachment_attachment_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Solwin\ProductAttachment\Block\Adminhtml\Attachment\Edit\Tabs" name="solwin_productattachment_attachment_tabs">
+                <block class="Solwin\ProductAttachment\Block\Adminhtml\Attachment\Edit\Tab\Attachment" name="solwin_productattachment_attachment_edit_tab_attachment"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">attachment</argument>
+                    <argument name="block" xsi:type="string">solwin_productattachment_attachment_edit_tab_attachment</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

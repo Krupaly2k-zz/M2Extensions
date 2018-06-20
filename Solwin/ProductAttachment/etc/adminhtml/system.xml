@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Solwin Infotech
+ * Solwin Product Attachment
+ * 
+ * @category   Solwin
+ * @package    Solwin_ProductAttachment
+ * @copyright  Copyright © 2006-2016 Solwin (https://www.solwininfotech.com)
+ * @license    https://www.solwininfotech.com/magento-extension-license/
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="product_attachment" translate="label" sortOrder="110">
+            <label>Product Attachment</label>
+        </tab>
+        <section id="productattachment"  translate="label" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+            <tab>product_attachment</tab>
+            <label>Configuration</label>
+            <resource>Solwin_ProductAttachment::productattachment_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General</label>
+                <field id="active" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable </label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Select Yes to enable module on frontend]]></comment>
+                </field>
+                <field id="attachmenttitle" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Set attachment title</label>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <comment><![CDATA[ Set attachment title or leave empty if you don't want to show title]]></comment>
+                </field>
+                <field id="attachmenttab" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show attachment tab</label>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Show attachment tab in product detail page]]></comment>
+                </field>
+                <field id="attachmentblock" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show attachment block</label>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Show Attachment block inside product info in product detail Page]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Solwin Infotech
+ * Solwin Product Attachment
+ * 
+ * @category   Solwin
+ * @package    Solwin_ProductAttachment
+ * @copyright  Copyright © 2006-2016 Solwin (https://www.solwininfotech.com)
+ * @license    https://www.solwininfotech.com/magento-extension-license/
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <productattachment>
+            <general>
+                <active>0</active>
+                <attachmenttitle>Attachments</attachmenttitle>
+                <attachmenttab>1</attachmenttab>
+                <attachmentblock>0</attachmentblock>
+            </general>
+        </productattachment>
+    </default>
+</config>

@@ -1,0 +1,111 @@
+<?php
+/**
+ * Solwin Infotech
+ * Solwin Product Attachments
+ * 
+ * @category   Solwin
+ * @package    Solwin_ProductAttachment
+ * @copyright  Copyright © 2006-2016 Solwin (https://www.solwininfotech.com)
+ * @license    https://www.solwininfotech.com/magento-extension-license/
+ */
+$helper = $this->helper('Solwin\ProductAttachment\Helper\Data');
+$enable = $helper->getConfigValue('productattachment/general/active');
+$currentCustomerGroupId = $this->getCurrentCustomerGroupId();
+$mediaUrl = $this->getMediaUrl();
+$fileUrl = $mediaUrl . 'solwin/productattachment/attachment/file';
+$attachmentHeading = $helper->getConfigValue('productattachment/general/attachmenttitle');
+
+if ($enable) {
+    $product = $this->getProduct();
+	
+    if ($product) {
+	//$this->getProduct()->getTypeInstance()->getAssociatedProducts($this->getProduct())
+	
+		$prtype = $product->getTypeId();
+		$productAttachmentIds = '';
+	    if($prtype == 'simple'){
+			$productAttachmentIds = $this->getProduct()->getProductattachment();
+		}
+		else{
+			$_associatedProducts = $this->getProduct()->getTypeInstance()->getAssociatedProducts($this->getProduct());
+
+			foreach ($_associatedProducts as $_item){
+				$proattachid = $this->getProduct()->getResource()->getAttributeRawValue($_item->getId(),'productattachment',$_item->getId());
+				if($proattachid != '')
+				{
+				$productAttachmentIds[] = $proattachid;
+				}
+			}
+		}
+
+        if ($productAttachmentIds) {
+			if($prtype == 'simple')
+			{
+				$productAttachmentId = explode(',', $productAttachmentIds);
+			}
+			else{
+				$productAttachmentId = $productAttachmentIds;
+			}
+		
+            ?>
+            <div class="product-downloads">
+                <?php if ($attachmentHeading != '') { ?>
+                <h3><strong><?php echo $attachmentHeading; ?></strong></h3>
+                <?php }?>
+                <ul>
+                    <div class="download">
+                        <?php
+                        foreach ($productAttachmentId as $attachmentId) {
+
+                            $attachment = $this->getSingleAttachmentCollection($attachmentId);
+                          
+                                ?>
+
+                                <?php
+                                $attachmentFile = $attachment->getAttachmentFile();
+                                 if ($attachmentFile != '') {
+                                $attachmentFileUrl = $fileUrl . $attachmentFile;
+
+
+                                $fileExtension = pathinfo($attachmentFile, PATHINFO_EXTENSION);
+                                ?>
+                                <li>
+                                    <?php if ($fileExtension == 'jpg' || $fileExtension == 'jpeg') { ?>
+                                        <img src="<?php echo $this->getIcon('jpg.png'); ?>" alt=""/>
+                                    <?php } elseif ($fileExtension == 'png') { ?>
+                                        <img src="<?php echo $this->getIcon('png.png'); ?>" alt=""/>
+                                    <?php } elseif ($fileExtension == 'mp4') { ?>
+                                        <img src="<?php echo $this->getIcon('mp4.png'); ?>" alt=""/>
+                                    <?php } elseif ($fileExtension == 'pdf') { ?>
+                                        <img src="<?php echo $this->getIcon('pdf.png'); ?>" alt=""/>
+                                    <?php } elseif ($fileExtension == 'txt') { ?>
+                                        <img src="<?php echo $this->getIcon('txt.png'); ?>" alt=""/>
+                                    <?php } elseif ($fileExtension == 'xls') { ?>
+                                        <img src="<?php echo $this->getIcon('xls.png'); ?>" alt=""/>
+                                    <?php } elseif ($fileExtension == 'doc') { ?>
+                                        <img src="<?php echo $this->getIcon('doc.png'); ?>" alt=""/>
+                                    <?php } else { ?>
+                                        <img src="<?php echo $this->getIcon('attachment.png'); ?>" alt=""/>
+                                    <?php } ?>
+
+                                    <a class="attachment-link"
+                                       href="<?php echo $attachmentFileUrl; ?>"
+                                       target="_blank"><?php echo $attachment->getTitle(); ?></a>
+                                </li>
+
+                                <?php
+                            }
+                        }
+                        ?>
+
+                    </div>
+                </ul>
+
+                <div class="clearfix"></div>
+            </div>
+            <?php
+        }
+    }
+}
+
+    

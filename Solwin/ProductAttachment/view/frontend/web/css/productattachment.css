@@ -1,0 +1,16 @@
+.download > li, .product-downloads ul {
+  list-style: outside none none;
+  padding: 0px;
+}
+
+.product-downloads .attachment-link {
+  margin-left: 10px;
+  color: #000;
+}
+
+.download > li {
+  margin-bottom: 5px;
+}
+.product-downloads > ul {
+  margin-top: 10px;
+}
