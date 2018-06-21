@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+    <default>
+        <photoupload>
+            <email>
+                <recipient_email>
+                    <![CDATA[kasam.panya@gmail.com]]>
+                </recipient_email>
+                <sender_email_identity>custom2</sender_email_identity>
+                <email_template>photoupload_email_email_template</email_template>
+            </email>
+		</photoupload>
+    </default>
+</config>

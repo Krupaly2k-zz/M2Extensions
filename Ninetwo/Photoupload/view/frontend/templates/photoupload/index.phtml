@@ -1,0 +1,102 @@
+<?php
+/**
+ * Copyright © 2015 ninetwocommerce. All rights reserved.
+ */
+?>
+<?php
+/**
+ * {{controller}} {{action}} template
+ *
+ * @var $block \Ninetwo\Photoupload\Block\Photoupload\Index
+ */
+
+
+// echo $block->hello;
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+$productId = $block->getPhotoProductId();
+
+?>
+<!-- <br/> -->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h2>Post your photo</h2>
+        </div>    
+        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+            <form name="photo_upload" id="photo_upload" method="post" action="<?php /* @escapeNotVerified */ echo $block->getFormAction(); ?>" enctype="multipart/form-data"
+data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>"
+data-mage-init='{"validation":{}}'>
+                <fieldset class="fieldset">
+                    <div class="field name required">
+                        <label class="label" for="Display Name" ><?php /* @escapeNotVerified */ echo __('Display Name (will be displayed on website)'); ?></label> 
+                        <div class="control">
+                            <input type="text" name="name" title="Display Name" id="name" class="input-text" value="" data-validate="{required:true}"/>
+                        </div>
+                    </div>
+                    <div class="field name required">
+                        <label for="Display Name" class="label"><?php /* @escapeNotVerified */ echo __('Email'); ?> </label> 
+                        <div class="control">
+                            <input type="text" name="email" title="Email" id="email" class="input-text" value="" data-validate="{required:true, 'validate-email':true}"/>
+                        </div>
+                    </div>
+                    <div class="field name">
+                        <label for="Order Number" class="label"><?php /* @escapeNotVerified */ echo __('Order Number'); ?></label> 
+                        <div class="control">
+                            <input type="text" name="order_no" title="Order Number" class="input-text" id="order_no" value="" />
+                        </div>
+                    </div>
+					<div class="field name">
+                        <label for="Year" class="label"><?php /* @escapeNotVerified */ echo __('Year'); ?></label> 
+                        <div class="control">
+                            <input type="text" name="year" title="Year" class="input-text" id="year" value="" />
+                        </div>
+                    </div>
+					<div class="field name">
+                        <label for="Make" class="label"><?php /* @escapeNotVerified */ echo __('Make'); ?></label> 
+                        <div class="control">
+                            <input type="text" name="color" title="Make" class="input-text" id="color" value="" />
+                        </div>
+                    </div>
+					<div class="field name">
+                        <label for="Model" class="label"><?php /* @escapeNotVerified */ echo __('Model'); ?></label> 
+                        <div class="control">
+                            <input type="text" name="model" title="Model" class="input-text" id="model" value="" />
+                        </div>
+                    </div>
+                    <div class="field name required">
+                        <label for="Choose your photo" class="label">Choose your photo</label> 
+                        <div class="control">
+                            <input type="file" name="image" id="image"  data-validate="{required:true}" />
+                        </div>
+                    </div>
+                    <div class="field name required">
+                        <label for="Leave a Comment" class="label"><?php /* @escapeNotVerified */ echo __('Leave a Comment'); ?></label> 
+                        <div class="control">
+                            <textarea name="comment" title="Choose your photo" id="comment"  class="input-text" placeholder="Describe your photo" value="" data-validate="{required:true}"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+                <input type="hidden" name="product_id" id="product_id" value="<?php echo $productId; ?>" />
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <button type="submit" title="<?php /* @escapeNotVerified */ echo __('POST PHOTO') ?>" class="action submit primary">
+                            <span><?php /* @escapeNotVerified */ echo __('POST PHOTO') ?></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-1 col-md-1 hidden-sm hidden-xs"></div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+             <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('tips-to-help')->toHtml();?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 post-short-desc">
+            <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('spot-for-disclaimer')->toHtml();?>
+        </div>
+    </div>
+</div>

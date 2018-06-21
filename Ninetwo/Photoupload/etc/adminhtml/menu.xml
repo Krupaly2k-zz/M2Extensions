@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Ninetwo. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="Ninetwo_Photoupload::ninetwo_photoupload_index" title="Photoupload" module="Ninetwo_Photoupload"  sortOrder="20" dependsOnModule="Ninetwo_Photoupload" action="photoupload/photoupload/index" resource="Ninetwo_Photoupload::ninetwo_photoupload_index"/>
+<!--AddMenu-->
+    </menu>
+</config>

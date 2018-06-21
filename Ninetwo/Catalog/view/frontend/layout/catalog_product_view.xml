@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<body>
+    <referenceContainer name="product.info.social">
+        <block class="Ninetwo\Catalog\Block\Product\View\Extra"
+            name="product.view.extra"
+            template="Ninetwo_Catalog::product/view/extra.phtml"
+            after="-">
+        </block>
+    </referenceContainer>
+	<referenceContainer name="content.aside">
+        <block class="Ninetwo\Catalog\Block\Product\View\Productphoto"
+            name="product.view.productphoto"
+            template="Ninetwo_Catalog::product/view/productphoto.phtml"
+            before="catalog.product.related">
+        </block>
+    </referenceContainer>
+</body>
